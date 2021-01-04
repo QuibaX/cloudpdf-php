@@ -2,8 +2,8 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/Valsty/cloudpdf-php.svg?style=flat-square)](https://packagist.org/packages/Valsty/cloudpdf-php)
 
-
-This is where your description should go. Try and limit it to a paragraph or two. Consider adding a small example.
+A small PHP wrapper around the CloudPDF API.
+Visit https://cloudpdf.dev for more info.
 
 ## Installation
 

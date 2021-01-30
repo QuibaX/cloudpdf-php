@@ -15,9 +15,16 @@ composer require valsty/cloudpdf-php
 
 ## Usage
 
+### PDF Generation
 ```php
 $generator = new Valsty\CloudPdf\PDFGenerator('API_KEY');
 $downloadUrl = $generator->fromHtml('<h1>Hi there!</h1>', 'myfile.pdf');
+```
+
+### Create image(s) from PDF
+```php
+$generator = new Valsty\CloudPdf\ImageGenerator('API_KEY');
+$image = $generator->pdfToImage($pdfUrl, 'jpg');
 ```
 
 ## Credits

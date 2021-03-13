@@ -25,16 +25,18 @@ class ImageGenerator
     /**
      * @param string $pdfUrl The url of the PDF to parse
      * @param string $type The return image type (png or jpg)
+     * @param int|string $page Set the page number or set to 'all' to return an array of all pages
      * @return string|bool Return's the file
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function pdfToImage(string $pdfUrl, string $type = 'jpg')
+    public function pdfToImage(string $pdfUrl, string $type = 'jpg', $page = 1)
     {
         try {
             $response = $this->client->post('/api/pdf/to-image', [
                 'form_params' => [
                     'pdf_url' => $pdfUrl,
                     'format' => $type,
+                    'page' => $page
                 ],
             ]);
 

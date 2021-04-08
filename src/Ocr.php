@@ -52,7 +52,10 @@ class Ocr
         try {
             $response = $this->client->post('/api/ocr/from-image', [
                 'multipart' => [
-                    'image' => $imageContents
+                    [
+                        'name' => 'image',
+                        'contents' => $imageContents
+                    ]
                 ],
             ]);
 
@@ -94,7 +97,10 @@ class Ocr
         try {
             $response = $this->client->post('/api/ocr/from-pdf-url', [
                 'multipart' => [
-                    'pdf' => $pdfContents
+                    [
+                        'name' => 'pdf',
+                        'contents' => $pdfContents
+                    ]
                 ],
             ]);
 

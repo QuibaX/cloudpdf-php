@@ -1,6 +1,6 @@
 <?php
 
-namespace Valsty\CloudPdf;
+namespace QuibaX\CloudPdf;
 
 use GuzzleHttp\Client;
 

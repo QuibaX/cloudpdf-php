@@ -1,11 +1,11 @@
 {
-    "name": "valsty/cloudpdf-php",
+    "name": "quibax/cloudpdf-php",
     "description": "A PHP Wrapper around the CloudPdf API",
     "keywords": [
-        "Valsty",
+        "QuibaX",
         "cloudpdf-php"
     ],
-    "homepage": "https://github.com/Valsty/cloudpdf-php",
+    "homepage": "https://github.com/quibax/cloudpdf-php",
     "license": "MIT",
     "authors": [
         {
@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Valsty\\CloudPdf\\": "src"
+            "QuibaX\\CloudPdf\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Valsty\\CloudPdf\\Tests\\": "tests"
+            "QuibaX\\CloudPdf\\Tests\\": "tests"
         }
     },
     "scripts": {

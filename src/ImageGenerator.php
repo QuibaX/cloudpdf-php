@@ -29,13 +29,43 @@ class ImageGenerator
      * @return string|bool Return's the file
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function pdfToImage(string $pdfUrl, string $type = 'jpg', $page = 1)
+    public function pdfToImageFromUrl(string $pdfUrl, string $type = 'jpg', $page = 1)
     {
-        $response = $this->client->post('/api/pdf/to-image', [
+        $response = $this->client->post('/api/pdf/to-image-by-url', [
             'form_params' => [
                 'pdf_url' => $pdfUrl,
                 'format' => $type,
                 'page' => $page
+            ],
+        ]);
+
+        return $response->getBody()->getContents();
+    }
+
+    /**
+     * @param string $pdfContents
+     * @param string $type The return image type (png or jpg)
+     * @param int|string $page Set the page number or set to 'all' to return an array of all pages
+     * @return string|bool Return's the file
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function pdfToImage(string $pdfContents, string $type = 'jpg', $page = 1)
+    {
+        $response = $this->client->post('/api/pdf/to-image', [
+            'multipart' => [
+                [
+                    'name' => 'pdf',
+                    'contents' => $pdfContents,
+                    'filename' => 'file.pdf'
+                ],
+                [
+                    'name' => 'type',
+                    'contents' => $type
+                ],
+                [
+                    'name' => 'page',
+                    'contents' => $page
+                ]
             ],
         ]);
 

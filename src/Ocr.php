@@ -86,11 +86,12 @@ class Ocr
 
     public function getTextFromPdf(string $pdfContents)
     {
-        $response = $this->client->post('/api/ocr/from-pdf-url', [
+        $response = $this->client->post('/api/ocr/from-pdf', [
             'multipart' => [
                 [
                     'name' => 'pdf',
-                    'contents' => $pdfContents
+                    'contents' => $pdfContents,
+                    'filename' => 'file.pdf'
                 ]
             ],
         ]);

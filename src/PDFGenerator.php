@@ -30,18 +30,14 @@ class PDFGenerator
      */
     public function fromHtml(string $html, string $filename)
     {
-        try {
-            $response = $this->client->post('/api/pdf/generate', [
-                'form_params' => [
-                    'html' => $html,
-                    'filename' => $filename,
-                ],
-            ]);
+        $response = $this->client->post('/api/pdf/generate', [
+            'form_params' => [
+                'html' => $html,
+                'filename' => $filename,
+            ],
+        ]);
 
-            return json_decode($response->getBody()->getContents())->download_url;
-        } catch (\Exception $exception) {
-            return false;
-        }
+        return json_decode($response->getBody()->getContents())->download_url;
     }
 
     /**
@@ -52,17 +48,13 @@ class PDFGenerator
      */
     public function fromUrl(string $url, string $filename)
     {
-        try {
-            $response = $this->client->post('/api/pdf/generate-by-url', [
-                'form_params' => [
-                    'url' => $url,
-                    'filename' => $filename,
-                ],
-            ]);
+        $response = $this->client->post('/api/pdf/generate-by-url', [
+            'form_params' => [
+                'url' => $url,
+                'filename' => $filename,
+            ],
+        ]);
 
-            return json_decode($response->getBody()->getContents())->download_url;
-        } catch (\Exception $exception) {
-            return false;
-        }
+        return json_decode($response->getBody()->getContents())->download_url;
     }
 }

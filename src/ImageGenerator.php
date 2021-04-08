@@ -31,18 +31,14 @@ class ImageGenerator
      */
     public function pdfToImage(string $pdfUrl, string $type = 'jpg', $page = 1)
     {
-        try {
-            $response = $this->client->post('/api/pdf/to-image', [
-                'form_params' => [
-                    'pdf_url' => $pdfUrl,
-                    'format' => $type,
-                    'page' => $page
-                ],
-            ]);
+        $response = $this->client->post('/api/pdf/to-image', [
+            'form_params' => [
+                'pdf_url' => $pdfUrl,
+                'format' => $type,
+                'page' => $page
+            ],
+        ]);
 
-            return $response->getBody()->getContents();
-        } catch (\Exception $exception) {
-            return false;
-        }
+        return $response->getBody()->getContents();
     }
 }

@@ -49,20 +49,16 @@ class Ocr
      */
     public function getTextFromImage(string $imageContents)
     {
-        try {
-            $response = $this->client->post('/api/ocr/from-image', [
-                'multipart' => [
-                    [
-                        'name' => 'image',
-                        'contents' => $imageContents
-                    ]
-                ],
-            ]);
+        $response = $this->client->post('/api/ocr/from-image', [
+            'multipart' => [
+                [
+                    'name' => 'image',
+                    'contents' => $imageContents
+                ]
+            ],
+        ]);
 
-            return json_decode($response->getBody()->getContents())->contents;
-        } catch (\Exception $exception) {
-            return false;
-        }
+        return json_decode($response->getBody()->getContents())->contents;
     }
 
     /**
@@ -73,17 +69,13 @@ class Ocr
 
     public function getTextFromPdfByUrl(string $url)
     {
-        try {
-            $response = $this->client->post('/api/ocr/from-pdf-url', [
-                'form_params' => [
-                    'url' => $url
-                ],
-            ]);
+        $response = $this->client->post('/api/ocr/from-pdf-url', [
+            'form_params' => [
+                'url' => $url
+            ],
+        ]);
 
-            return json_decode($response->getBody()->getContents())->contents;
-        } catch (\Exception $exception) {
-            return false;
-        }
+        return json_decode($response->getBody()->getContents())->contents;
     }
 
     /**
@@ -94,19 +86,15 @@ class Ocr
 
     public function getTextFromPdf(string $pdfContents)
     {
-        try {
-            $response = $this->client->post('/api/ocr/from-pdf-url', [
-                'multipart' => [
-                    [
-                        'name' => 'pdf',
-                        'contents' => $pdfContents
-                    ]
-                ],
-            ]);
+        $response = $this->client->post('/api/ocr/from-pdf-url', [
+            'multipart' => [
+                [
+                    'name' => 'pdf',
+                    'contents' => $pdfContents
+                ]
+            ],
+        ]);
 
-            return json_decode($response->getBody()->getContents())->contents;
-        } catch (\Exception $exception) {
-            return false;
-        }
+        return json_decode($response->getBody()->getContents())->contents;
     }
 }

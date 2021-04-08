@@ -59,7 +59,7 @@ class ImageGenerator
                     'filename' => 'file.pdf'
                 ],
                 [
-                    'name' => 'type',
+                    'name' => 'format',
                     'contents' => $type
                 ],
                 [

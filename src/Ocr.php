@@ -43,6 +43,26 @@ class Ocr
     }
 
     /**
+     * @param string $imageContents
+     * @return false
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getTextFromImage(string $imageContents)
+    {
+        try {
+            $response = $this->client->post('/api/ocr/from-image', [
+                'multipart' => [
+                    'image' => $imageContents
+                ],
+            ]);
+
+            return json_decode($response->getBody()->getContents())->contents;
+        } catch (\Exception $exception) {
+            return false;
+        }
+    }
+
+    /**
      * @param string $url
      * @return array
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -54,6 +74,27 @@ class Ocr
             $response = $this->client->post('/api/ocr/from-pdf-url', [
                 'form_params' => [
                     'url' => $url
+                ],
+            ]);
+
+            return json_decode($response->getBody()->getContents())->contents;
+        } catch (\Exception $exception) {
+            return false;
+        }
+    }
+
+    /**
+     * @param string $pdfContents
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+
+    public function getTextFromPdf(string $pdfContents)
+    {
+        try {
+            $response = $this->client->post('/api/ocr/from-pdf-url', [
+                'multipart' => [
+                    'pdf' => $pdfContents
                 ],
             ]);
 

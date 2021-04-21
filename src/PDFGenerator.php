@@ -3,6 +3,7 @@
 namespace QuibaX\CloudPdf;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
 
 class PDFGenerator
 {
@@ -28,16 +29,23 @@ class PDFGenerator
      * @return string|bool Return's the download url. Return's false on error.
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function fromHtml(string $html, string $filename)
+    public function fromHtml(string $html, string $filename, float $width = null, float $height = null, string $unit = 'mm', bool $direct = false)
     {
         $response = $this->client->post('/api/pdf/generate', [
-            'form_params' => [
+            RequestOptions::JSON =>  [
                 'html' => $html,
                 'filename' => $filename,
-            ],
+                'direct' => $direct,
+                'width' => $width,
+                'height' => $height,
+                'unit' => $unit
+            ]
         ]);
 
-        return json_decode($response->getBody()->getContents())->download_url;
+        if($direct)
+            return $response->getBody()->getContents();
+        else
+            return json_decode($response->getBody()->getContents())->download_url;
     }
 
     /**
